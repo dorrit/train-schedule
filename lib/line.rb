@@ -8,7 +8,9 @@ attr_reader :line_name, :line_id
   end
 
   def save
-    @line_id = DB.exec("INSERT INTO lines (line_name) VALUES ('#{@line_name}') RETURNING id;").map {|result| result['id']}.first.to_i
+    @line_id = DB.exec("INSERT INTO lines (line_name)
+                        VALUES ('#{@line_name}')
+                        RETURNING id;").map {|result| result['id']}.first.to_i
   end
 
 

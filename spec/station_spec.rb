@@ -4,13 +4,15 @@ describe Station do
 
   context '#initialize' do
     it 'initializes an instance of station' do 
-      station = Station.new('station_name' => 'uptown').should be_an_instance_of Station
+      station = Station.new('station_name' => 'uptown')
+      station.should be_an_instance_of Station
     end
   end
 
-  context 'readers' do
+  context '#station_name' do
     it 'returns the value for station_name' do
       station = Station.new('station_name' => 'uptown')
+      station.save
       station.station_name.should eq 'uptown'
     end
   end
@@ -29,7 +31,7 @@ describe Station do
       station2 = Station.new('station_name' => 'uptown')
       station.save
       station2.save
-      Station.all.map {|input| input}.should =~ [station, station2]
+      Station.all.should eq [station, station2]
     end 
   end
 
